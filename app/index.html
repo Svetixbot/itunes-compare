@@ -4,25 +4,41 @@
   <meta charset="utf-8">
   <title>My AngularJS App</title>
   <link rel="stylesheet" href="css/app.css"/>
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/app.js"></script>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
-
-  <div ng-view></div>
-
-  <div>Angular seed app: v<span app-version></span></div>
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-  -->
-  <script src="lib/angular/angular.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/services.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/directives.js"></script>
+    <div ng-controller="ListCtrl" class="container">
+	<div class="hero-unit">
+	 <div class="input-append pager">
+	      <input class="span4" ng-model="query" type="text" placeholder="Search"/>
+	      <button class="btn btn-primary" ng-click="searchMovies()">Show</button>
+	  </div>
+	</div>
+	<table class="table table-hover"> 
+	    <thead>
+	      <tr>   
+		  <th></th>
+		  <th></th>
+		  <th>iTunes USA</th>
+		  <th>iTunes Australia</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr ng-repeat="movie in usaMovies">
+		  <td class="thumbnails"> 
+		      <img class="thumbnail" src="{{movie.artworkUrl100}}"/>
+		  </td>
+		  <td>
+		    <h4>{{movie.trackName}}</h4>
+		  </td>
+		  <td>USD${{movie.trackPrice}}</td>
+		  <td>AUS${{auPrice[movie.trackId]}}</td>
+	      <tr>
+	    </tbody>
+	</table>
+    </div>
 </body>
 </html>
